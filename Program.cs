@@ -14,6 +14,12 @@ namespace MovieList
             builder.Services.AddDbContext<MovieContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("MovieContext")));
 
+            builder.Services.AddRouting(options =>
+            {
+                options.LowercaseUrls = true;
+                options.AppendTrailingSlash = true;
+            });
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 
 namespace MovieList.Models
 {
@@ -21,5 +22,11 @@ namespace MovieList.Models
 
         public string Slug =>
             Name?.Replace(' ', '-').ToLower() + '-' + Year?.ToString();
+
+        [ValidateNever]
+        public Genre Genre { get; set; } = null!;
+        [Required(ErrorMessage = "Please enter a genre.")]
+        public string GenreId { get; set; } = string.Empty;
+
     }
 }
